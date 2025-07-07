@@ -5,12 +5,10 @@ import json
 import pandas as pd
 from openai import OpenAI
 from dotenv import load_dotenv
+import streamlit as st
 
-load_dotenv()
-
-# Initialize OpenAI client with API key from env or fallback
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY", "<your-api-key>"))
-MODEL = "gpt-4.1-mini"
+api_key = os.getenv("OPENAI_API_KEY") or st.secrets.get("OPENAI_API_KEY")
+client = OpenAI(api_key=api_key)
 
 # ---------------------- Constants ----------------------
 

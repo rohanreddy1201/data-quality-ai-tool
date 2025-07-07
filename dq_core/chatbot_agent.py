@@ -5,11 +5,11 @@ import json
 import pandas as pd
 from openai import OpenAI
 from dotenv import load_dotenv
+import streamlit as st
 
-load_dotenv()
-
-# Initialize client with correct model
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# Use environment variable locally or st.secrets on Streamlit Cloud
+api_key = os.getenv("OPENAI_API_KEY") or st.secrets.get("OPENAI_API_KEY")
+client = OpenAI(api_key=api_key)
 MODEL = "gpt-4.1-mini"
 
 def chat_with_data_context(user_input: str, df: pd.DataFrame) -> str:
